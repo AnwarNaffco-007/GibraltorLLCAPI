@@ -34,11 +34,12 @@ namespace GibraltorLLCAPI
             services.AddControllers();
             services.AddTransient<IPatientRepository, PatientRepository>();
             services.AddTransient<IVaccinationRepository, VaccinationRepository>();
+            services.AddTransient<IVaccinationHistoryRepository, VaccinationHistoryRepository>();
 
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("CovidDb")));
             services.AddControllersWithViews().AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore).AddNewtonsoftJson(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver());
 
-            services.AddCors(c =>
+            services.AddCors(c => 
             {
                 c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin().AllowAnyMethod()
                   .AllowAnyHeader());

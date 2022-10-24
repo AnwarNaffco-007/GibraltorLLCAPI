@@ -13,6 +13,6 @@ namespace DTOs.Web
         public int VaccinationId { get; set; }
         public string VaccinationPlace { get; set; }
         public string VaccinationDate { get; set; }
-        public int DoseNumber { get; set; }
+        public int VaccinationDose { get; set; }
     }
 }
