@@ -7,7 +7,7 @@ using System.Text;
 namespace DTOs.Web
 {
     [Table("tbl_VaccinationInfo")]
-    public class TVaccination
+    public class DTOVaccination
     {
         [Key]
         public int Id { get; set; }

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace DTOs.Web
 {
-   public class TVaccinationHistory
+   public class DTOVaccinationHistory
     {
         [Key]
         public int Id { get; set; }

@@ -9,10 +9,10 @@ namespace Repository.Web.IRepository
     public interface IPatientRepository
     {
         
-        Task<IEnumerable<TPatientInfo>> GetPatientInfo();
-        Task<TPatientInfo> GetPatientInfoByID(int ID);
-        Task<TPatientInfo> InsertPatientInfo(TPatientInfo pat);
-        Task<TPatientInfo> UpdatePatientInfo(TPatientInfo pat);
+        Task<IEnumerable<DTOPatientInfo>> GetPatientInfo();
+        Task<DTOPatientInfo> GetPatientInfoByID(int ID);
+        Task<DTOPatientInfo> InsertPatientInfo(DTOPatientInfo pat);
+        Task<DTOPatientInfo> UpdatePatientInfo(DTOPatientInfo pat);
         bool DeletePatientInfo(int ID);
         //List<DTOPatientInfo> GetPatientInfo();
         //DTOPatientInfo GetPatientInfoByID(Guid ID);

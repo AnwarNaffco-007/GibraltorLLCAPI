@@ -8,18 +8,18 @@ namespace DTOs.Web
    public class AppDbContext : DbContext
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
-        public DbSet<TPatientInfo> tbl_PatientsInfo
+        public DbSet<DTOPatientInfo> tbl_PatientsInfo
         {
             get;
             set;
         }
-        public DbSet<TVaccination> tbl_VaccinationInfo
+        public DbSet<DTOVaccination> tbl_VaccinationInfo
         {
             get;
             set;
         }
 
-        public DbSet<TVaccinationHistory> tbl_VaccinationHistory 
+        public DbSet<DTOVaccinationHistory> tbl_VaccinationHistory 
         {
             get; 
             set; 

@@ -75,8 +75,8 @@ namespace GibraltorLLCAPI
 
             app.UseSwagger();
             app.UseSwaggerUI(c => {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "WEB API");
-                c.DocumentTitle = "WEB API";
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Asp.net core 3.1 API");
+                c.DocumentTitle = "Web API For Covid System";
                 c.DocExpansion(DocExpansion.List);
             });
         }

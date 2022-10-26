@@ -23,7 +23,11 @@ namespace GibraltorLLCAPI.Controllers
         [Route("GetPatients")]
         public async Task<IActionResult> Get()
         {
-            return Ok(await _patient.GetPatientInfo());
+            var patients = await _patient.GetPatientInfo();
+            if (patients == null)
+                return NotFound();
+
+            return Ok();
         }
         [HttpGet]
         [Route("GetPatientByID/{Id}")]
@@ -33,7 +37,7 @@ namespace GibraltorLLCAPI.Controllers
         }
         [HttpPost]
         [Route("CreatePatient")]
-        public async Task<IActionResult> Post(TPatientInfo pat)
+        public async Task<IActionResult> Post(DTOPatientInfo pat)
         {
             var result = await _patient.InsertPatientInfo(pat);
             if (result.Id == 0)
@@ -44,7 +48,7 @@ namespace GibraltorLLCAPI.Controllers
         }
         [HttpPut]
         [Route("UpdatePatient")]
-        public async Task<IActionResult> Put(TPatientInfo pat)
+        public async Task<IActionResult> Put(DTOPatientInfo pat)
         {
             await _patient.UpdatePatientInfo(pat);
             return Ok("Updated Successfully");
@@ -58,51 +62,6 @@ namespace GibraltorLLCAPI.Controllers
             return new JsonResult("Deleted Successfully");
         }
 
-        //private readonly IPatientRepository _patient;
-        //List<DTOPatientInfo> oTempList = new List<DTOPatientInfo>();
-        //public PatientController(IPatientRepository patientRepository)
-        //{
-        //    _patient = patientRepository;
-        //}
-        //[HttpGet]
-        //[Route("GetPatientInfo")]
-        //public async Task<IActionResult> Get()
-        //{
-        //    return Ok( _patient.GetPatientInfo());
-        //}
-
-        //[HttpGet]
-        //[Route("GetPatientInfoByID")]
-        //public async Task<IActionResult> GetById(Guid ID)
-        //{
-        //    //return Ok(_patient.GetPatientInfoByID(ID));
-        //    return Ok(oTempList.Where(s=>s.Id == ID).FirstOrDefault());
-        //}
-
-        //[HttpPost]
-        //[Route("InsertPatientInfo")]
-        //public async Task<DTOPatientInfo> InsertPatient(DTOPatientInfo oPat)
-        //{
-        //   oTempList.Add(_patient.InsertPatientInfo(oPat));
-        //    return _patient.InsertPatientInfo(oPat);
-        //}
-
-        //[HttpPut]
-        //[Route("UpdatePatientInfo")]
-        //public async Task<DTOPatientInfo> UpdatePatient(DTOPatientInfo objPat)
-        //{
-        //    //_patient.UpdatePatientInfo(objPat);
-        //    return _patient.UpdatePatientInfo(objPat);
-        //}
-
-        //[HttpDelete]
-        //[Route("DeletePatientInfo")]
-        //public JsonResult DeletePatient(Guid ID)
-        //{
-        //    var result = _patient.DeletePatientInfo(ID);
-        //    return new JsonResult("Deleted Successfully");
-
-        //}
 
     }
 }

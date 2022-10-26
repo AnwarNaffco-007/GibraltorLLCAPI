@@ -8,10 +8,10 @@ namespace Repository.Web.IRepository
 {
     public interface IVaccinationHistoryRepository
     {
-        Task<IEnumerable<TVaccinationHistory>> GetVacInfo();
-        Task<TVaccinationHistory> GetVacHistoryByID(int ID);
-        Task<TVaccinationHistory> InsertVacInfo(TVaccinationHistory vh);
-        Task<TVaccinationHistory> UpdateVacInfo(TVaccinationHistory vh);
+        Task<IEnumerable<DTOVaccinationHistory>> GetVacInfo();
+        Task<DTOVaccinationHistory> GetVacHistoryByID(int ID);
+        Task<DTOVaccinationHistory> InsertVacInfo(DTOVaccinationHistory vh);
+        Task<DTOVaccinationHistory> UpdateVacInfo(DTOVaccinationHistory vh);
         bool DeleteVacInfo(int ID);
     }
 }

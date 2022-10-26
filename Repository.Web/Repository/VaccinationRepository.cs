@@ -37,19 +37,19 @@ namespace Repository.Web.Repository
             throw new NotImplementedException();
         }
 
-        public async Task<IEnumerable<TVaccination>> GetVaccinationInfo()
+        public async Task<IEnumerable<DTOVaccination>> GetVaccinationInfo()
         {
             return await _appDBContext.tbl_VaccinationInfo.ToListAsync();
             throw new NotImplementedException();
         }
 
-        public async Task<TVaccination> GetVaccinationInfoByID(int ID)
+        public async Task<DTOVaccination> GetVaccinationInfoByID(int ID)
         {
             return await _appDBContext.tbl_VaccinationInfo.FindAsync(ID);
             throw new NotImplementedException();
         }
 
-        public async Task<TVaccination> InsertVaccinationInfo(TVaccination objVac)
+        public async Task<DTOVaccination> InsertVaccinationInfo(DTOVaccination objVac)
         {
             _appDBContext.tbl_VaccinationInfo.Add(objVac);
             await _appDBContext.SaveChangesAsync();
@@ -57,7 +57,7 @@ namespace Repository.Web.Repository
             throw new NotImplementedException();
         }
 
-        public async Task<TVaccination> UpdateVaccinationInfo(TVaccination objVac)
+        public async Task<DTOVaccination> UpdateVaccinationInfo(DTOVaccination objVac)
         {
             _appDBContext.Entry(objVac).State = EntityState.Modified;
             await _appDBContext.SaveChangesAsync();

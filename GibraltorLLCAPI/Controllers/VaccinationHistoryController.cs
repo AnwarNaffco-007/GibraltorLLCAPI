@@ -31,7 +31,7 @@ namespace GibraltorLLCAPI.Controllers
         }
         [HttpPost]
         [Route("CreateVaccinationHistory")]
-        public async Task<IActionResult> Post(TVaccinationHistory vh)
+        public async Task<IActionResult> Post(DTOVaccinationHistory vh)
         {
             var result = await _vh.InsertVacInfo(vh);
             if (result.Id == 0)
@@ -42,7 +42,7 @@ namespace GibraltorLLCAPI.Controllers
         }
         [HttpPut]
         [Route("UpdateVaccinationHistory")]
-        public async Task<IActionResult> Put(TVaccinationHistory vh)
+        public async Task<IActionResult> Put(DTOVaccinationHistory vh)
         {
             await _vh.UpdateVacInfo(vh);
             return Ok("Updated Successfully");
