@@ -12,10 +12,6 @@ using Newtonsoft.Json.Serialization;
 using Repository.Web.IRepository;
 using Repository.Web.Repository;
 using Swashbuckle.AspNetCore.SwaggerUI;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace GibraltorLLCAPI
 {
@@ -68,10 +64,12 @@ namespace GibraltorLLCAPI
 
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            //app.UseEndpoints(endpoints =>
+            //{
+            //    //endpoints.MapControllers();
+            //    //endpoints.MapSwagger("/swagger/v1/swagger.json");
+            //});
+
 
             app.UseSwagger();
             app.UseSwaggerUI(c => {
