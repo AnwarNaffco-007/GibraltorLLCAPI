@@ -27,7 +27,7 @@ namespace GibraltorLLCAPI.Controllers
             if (patients == null)
                 return NotFound();
 
-            return Ok();
+            return Ok(patients);
         }
         [HttpGet]
         [Route("GetPatientByID/{Id}")]

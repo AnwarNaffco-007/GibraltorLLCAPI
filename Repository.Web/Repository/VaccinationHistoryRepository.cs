@@ -1,8 +1,10 @@
 ﻿using DTOs.Web;
+using GibraltorLLCAPI.Response;
 using Microsoft.EntityFrameworkCore;
 using Repository.Web.IRepository;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -35,16 +37,45 @@ namespace Repository.Web.Repository
          
         }
 
-        public async Task<DTOVaccinationHistory> GetVacHistoryByID(int ID)
+        public async Task<VaccinationHistoryResponse> GetVacHistoryByID(int ID)
         {
-            return await _appDBContext.tbl_VaccinationHistory.FindAsync(ID);
+            var result = await (from vh in _appDBContext.tbl_VaccinationHistory
+                                join pi in _appDBContext.tbl_PatientsInfo on vh.PatientId equals pi.Id
+                                join vi in _appDBContext.tbl_VaccinationInfo on vh.VaccinationId equals vi.Id
+                                where vh.Id == ID
+                                select new VaccinationHistoryResponse
+                                {
+                                    PatientName = pi.Name,
+                                    PatientFather = pi.Fathername,
+                                    VaccinationName = vi.Name,
+                                    VaccinationTotalDose = vi.DoseQuantity.ToString(),
+                                    VaccinationDose = vh.VaccinationDose.ToString(),
+                                    VaccinationDate = vh.VaccinationDate,
+                                    VaccinationPlace = vh.VaccinationPlace
+                                }).FirstOrDefaultAsync();
+            return result;
             
             throw new NotImplementedException();
         }
 
-        public async Task<IEnumerable<DTOVaccinationHistory>> GetVacInfo()
+        public async Task<IEnumerable<VaccinationHistoryResponse>> GetVacInfo()
         {
-            return await _appDBContext.tbl_VaccinationHistory.ToListAsync();
+  
+            var result = await (from vh in _appDBContext.tbl_VaccinationHistory
+                          join pi in _appDBContext.tbl_PatientsInfo on vh.PatientId equals pi.Id
+                          join vi in _appDBContext.tbl_VaccinationInfo on vh.VaccinationId equals vi.Id
+                          select new VaccinationHistoryResponse
+                          { 
+                          PatientName = pi.Name,
+                          PatientFather = pi.Fathername,
+                          VaccinationName = vi.Name,
+                          VaccinationTotalDose = vi.DoseQuantity.ToString(),
+                          VaccinationDose = vh.VaccinationDose.ToString(),
+                          VaccinationDate = vh.VaccinationDate,
+                          VaccinationPlace = vh.VaccinationPlace
+                          }).ToListAsync();
+
+            return result;
             throw new NotImplementedException();
         }
 

@@ -1,4 +1,5 @@
 ﻿using DTOs.Web;
+using GibraltorLLCAPI.Response;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,8 +9,8 @@ namespace Repository.Web.IRepository
 {
     public interface IVaccinationHistoryRepository
     {
-        Task<IEnumerable<DTOVaccinationHistory>> GetVacInfo();
-        Task<DTOVaccinationHistory> GetVacHistoryByID(int ID);
+        Task<IEnumerable<VaccinationHistoryResponse>> GetVacInfo();
+        Task<VaccinationHistoryResponse> GetVacHistoryByID(int ID);
         Task<DTOVaccinationHistory> InsertVacInfo(DTOVaccinationHistory vh);
         Task<DTOVaccinationHistory> UpdateVacInfo(DTOVaccinationHistory vh);
         bool DeleteVacInfo(int ID);

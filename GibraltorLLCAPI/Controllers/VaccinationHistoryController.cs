@@ -29,6 +29,7 @@ namespace GibraltorLLCAPI.Controllers
         {
             return Ok(await _vh.GetVacHistoryByID(Id));
         }
+
         [HttpPost]
         [Route("CreateVaccinationHistory")]
         public async Task<IActionResult> Post(DTOVaccinationHistory vh)

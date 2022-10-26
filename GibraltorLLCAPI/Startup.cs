@@ -64,11 +64,11 @@ namespace GibraltorLLCAPI
 
             app.UseAuthorization();
 
-            //app.UseEndpoints(endpoints =>
-            //{
-            //    //endpoints.MapControllers();
-            //    //endpoints.MapSwagger("/swagger/v1/swagger.json");
-            //});
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+                //endpoints.MapSwagger("/swagger/v1/swagger.json");
+            });
 
 
             app.UseSwagger();
