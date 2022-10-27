@@ -18,14 +18,14 @@ namespace GibraltorLLCAPI.Controllers
                     throw new ArgumentNullException(nameof(vh));
         }
         [HttpGet]
-        [Route("GetVaccinationHistory")]
-        public async Task<IActionResult> GetVaccinationHistory()
+        [Route("GetVaccinationsHistory")]
+        public async Task<IActionResult> GetVaccinationsHistory()
         {
             return Ok(await _vh.GetVacInfo());
         }
         [HttpGet]
-        [Route("GetVaccinationByID/{Id}")]
-        public async Task<IActionResult> GetVaccinationByID(int Id)
+        [Route("GetVaccinationHistoryByID/{Id}")]
+        public async Task<IActionResult> GetVaccinationHistoryByID(int Id)
         {
             return Ok(await _vh.GetVacHistoryByID(Id));
         }
