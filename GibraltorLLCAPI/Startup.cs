@@ -44,7 +44,8 @@ namespace GibraltorLLCAPI
             services.AddSwaggerGen(options => {
                 options.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
                 {
-                    Title = "WEB API",
+                    //Title = "WEB API",
+                    Title = "Covid System API",
                     Version = "v1"
                 });
             });

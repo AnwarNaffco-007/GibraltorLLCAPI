@@ -21,7 +21,7 @@ namespace GibraltorLLCAPI.Controllers
         }
         [HttpGet]
         [Route("GetPatients")]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> GetPatients()
         {
             var patients = await _patient.GetPatientInfo();
             if (patients == null)
@@ -31,13 +31,13 @@ namespace GibraltorLLCAPI.Controllers
         }
         [HttpGet]
         [Route("GetPatientByID/{Id}")]
-        public async Task<IActionResult> GetVacById(int Id)
+        public async Task<IActionResult> GetPatientByID(int Id)
         {
             return Ok(await _patient.GetPatientInfoByID(Id));
         }
         [HttpPost]
         [Route("CreatePatient")]
-        public async Task<IActionResult> Post(DTOPatientInfo pat)
+        public async Task<IActionResult> CreatePatient(DTOPatientInfo pat)
         {
             var result = await _patient.InsertPatientInfo(pat);
             if (result.Id == 0)
@@ -48,7 +48,7 @@ namespace GibraltorLLCAPI.Controllers
         }
         [HttpPut]
         [Route("UpdatePatient")]
-        public async Task<IActionResult> Put(DTOPatientInfo pat)
+        public async Task<IActionResult> UpdatePatient(DTOPatientInfo pat)
         {
             await _patient.UpdatePatientInfo(pat);
             return Ok("Updated Successfully");
@@ -56,7 +56,7 @@ namespace GibraltorLLCAPI.Controllers
         [HttpDelete]
         //[HttpDelete("{id}")]
         [Route("DeletePatient")]
-        public JsonResult Delete(int id)
+        public JsonResult DeletePatient(int id)
         {
             _patient.DeletePatientInfo(id);
             return new JsonResult("Deleted Successfully");

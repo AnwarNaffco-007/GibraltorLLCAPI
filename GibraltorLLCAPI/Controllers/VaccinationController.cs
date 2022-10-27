@@ -21,20 +21,20 @@ namespace GibraltorLLCAPI.Controllers
                     throw new ArgumentNullException(nameof(vaccination));
             }
             [HttpGet]
-            [Route("GetVaccination")]
-            public async Task<IActionResult> Get()
+            [Route("GetVaccinations")]
+            public async Task<IActionResult> GetVaccination()
             {
                 return Ok(await _vaccination.GetVaccinationInfo());
             }
             [HttpGet]
             [Route("GetVaccinationByID/{Id}")]
-            public async Task<IActionResult> GetVacById(int Id)
+            public async Task<IActionResult> GetVaccinationByID(int Id)
             {
                 return Ok(await _vaccination.GetVaccinationInfoByID(Id));
             }
             [HttpPost]
             [Route("CreateVaccination")]
-            public async Task<IActionResult> Post(DTOVaccination vac)
+            public async Task<IActionResult> CreateVaccination(DTOVaccination vac)
             {
                 var result = await _vaccination.InsertVaccinationInfo(vac);
                 if (result.Id == 0)
@@ -45,7 +45,7 @@ namespace GibraltorLLCAPI.Controllers
             }
             [HttpPut]
             [Route("UpdateVaccination")]
-            public async Task<IActionResult> Put(DTOVaccination vac)
+            public async Task<IActionResult> UpdateVaccination(DTOVaccination vac)
             {
                 await _vaccination.UpdateVaccinationInfo(vac);
                 return Ok("Updated Successfully");
@@ -53,7 +53,7 @@ namespace GibraltorLLCAPI.Controllers
             [HttpDelete]
             //[HttpDelete("{id}")]
             [Route("DeleteVaccination")]
-            public JsonResult Delete(int id)
+            public JsonResult DeleteVaccination(int id)
             {
             _vaccination.DeleteVaccinationInfo(id);
                 return new JsonResult("Deleted Successfully");

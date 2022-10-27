@@ -38,13 +38,27 @@ namespace Repository.Web.Repository
 
         public async Task<IEnumerable<DTOPatientInfo>> GetPatientInfo()
         {
-            return await _appDBContext.tbl_PatientsInfo.ToListAsync();
+            
+           var patients = await _appDBContext.tbl_PatientsInfo.ToListAsync();
+            foreach (var item in patients)
+            {
+                var res = _appDBContext.tbl_VaccinationHistory.Where(s => s.PatientId == item.Id).ToList();
+                item.VaccinationStatus = (res.Count > 0) ? "Vaccinated" : "Non-Vaccinated";
+            }
+            return patients;
             throw new NotImplementedException();
         }
 
         public async Task<DTOPatientInfo> GetPatientInfoByID(int ID)
-        {
-            return await _appDBContext.tbl_PatientsInfo.FindAsync(ID);
+        {           
+            var patient = await _appDBContext.tbl_PatientsInfo.FindAsync(ID);
+            var res = _appDBContext.tbl_VaccinationHistory.Where(s => s.PatientId == ID).ToList();
+            if (res.Count > 0)
+            {
+                patient.VaccinationStatus = "Vaccinated";
+            }
+            patient.VaccinationStatus = (res.Count > 0) ?   "Vaccinated" :  "Non-Vaccinated";
+            return patient;
             throw new NotImplementedException();
         }
 
